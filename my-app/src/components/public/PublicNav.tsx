@@ -5,7 +5,7 @@
  * Used by: PublicLayout
  */
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Phone } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -35,7 +35,10 @@ const PublicNav = () => {
 
   // Close mobile menu on route change
   useEffect(() => {
-    setIsMobileMenuOpen(false);
+    const timer = setTimeout(() => {
+      setIsMobileMenuOpen(false);
+    }, 0);
+    return () => clearTimeout(timer);
   }, [location.pathname]);
 
   const isActive = (path: string) => location.pathname === path;
