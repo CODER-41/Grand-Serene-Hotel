@@ -153,7 +153,7 @@ export function AppSidebar() {
             </div>
           )}
           {!collapsed && (
-            <button className="rounded-lg p-2 text-sidebar-foreground/60 transition-colors hover:bg-sidebar-accent hover:text-sidebar-accent-foreground">
+            <button title="Logout" className="rounded-lg p-2 text-sidebar-foreground/60 transition-colors hover:bg-sidebar-accent hover:text-sidebar-accent-foreground">
               <LogOut className="h-4 w-4" />
             </button>
           )}
