@@ -17,4 +17,18 @@ export default defineConfig(() => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    rollupOptions: {
+      output: {
+        // This splits your libraries into a 'vendor' chunk
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            return 'vendor';
+          }
+        },
+      },
+    },
+    // Optional: Increases the warning limit to 1000kb if you prefer
+    chunkSizeWarningLimit: 1000,
+  },
 }));
