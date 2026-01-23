@@ -10,7 +10,7 @@ import { Booking, BookingStatus } from "@/types/hotel.types";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import { format } from "date-fns";
-import { CalendarDays, User, Bed } from "lucide-react";
+import { CalendarDays, Bed } from "lucide-react";
 
 interface RecentBookingsProps {
   bookings: Booking[];
