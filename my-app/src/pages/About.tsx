@@ -9,6 +9,19 @@ import { motion } from 'framer-motion';
 import { Award, Heart, Globe, Leaf } from 'lucide-react';
 import PublicLayout from '@/components/public/PublicLayout';
 import { hotelInfo, teamMembers } from '@/data/publicData';
+import aboutHeritage from '@/assets/about-heritage.jpg';
+import teamGM from '@/assets/team-gm.jpg';
+import teamChef from '@/assets/team-chef.jpg';
+import teamSpa from '@/assets/team-spa.jpg';
+import teamConcierge from '@/assets/team-concierge.jpg';
+
+// Map team member roles to their images
+const teamImages: Record<string, string> = {
+  'General Manager': teamGM,
+  'Executive Chef': teamChef,
+  'Spa Director': teamSpa,
+  'Head Concierge': teamConcierge,
+};
 
 const About = () => {
   const values = [
@@ -77,15 +90,21 @@ const About = () => {
       <section className="py-24">
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            {/* Image Placeholder */}
+            {/* Heritage Image */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               className="relative"
             >
-              <div className="aspect-[4/5] bg-gradient-to-br from-accent/20 to-accent/5 rounded-lg" />
-              <div className="absolute -bottom-8 -right-8 w-48 h-48 bg-gradient-to-br from-sage/30 to-sage/10 rounded-lg" />
+              <div className="aspect-[4/5] rounded-lg overflow-hidden shadow-luxury">
+                <img 
+                  src={aboutHeritage} 
+                  alt="The Grand Serene Hotel Heritage" 
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="absolute -bottom-8 -right-8 w-48 h-48 bg-gradient-to-br from-accent/30 to-accent/10 rounded-lg -z-10" />
             </motion.div>
 
             {/* Content */}
@@ -198,8 +217,13 @@ const About = () => {
                 transition={{ delay: index * 0.1 }}
                 className="group"
               >
-                <div className="aspect-[3/4] bg-gradient-to-br from-muted to-muted/50 rounded-lg mb-4 overflow-hidden relative">
-                  <div className="absolute inset-0 bg-accent/0 group-hover:bg-accent/10 transition-colors duration-500" />
+                <div className="aspect-[3/4] rounded-lg mb-4 overflow-hidden relative shadow-soft group-hover:shadow-luxury transition-shadow duration-500">
+                  <img 
+                    src={teamImages[member.role] || teamGM} 
+                    alt={member.name}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-primary/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 </div>
                 <h3 className="font-display text-lg font-semibold">{member.name}</h3>
                 <p className="text-accent text-sm mb-2">{member.role}</p>
