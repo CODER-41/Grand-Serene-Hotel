@@ -15,11 +15,12 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Landing from "./pages/Landing";
 import About from "./pages/About";
 import ServicesPage from "./pages/ServicesPage";
+import Rooms from "./pages/Rooms";
 import Contact from "./pages/Contact";
 
 // Admin/Management pages
 import Dashboard from "./pages/Dashboard";
-import Rooms from "./pages/Rooms";
+import AdminRooms from "./pages/AdminRooms";
 import Bookings from "./pages/Bookings";
 import Guests from "./pages/Guests";
 import Housekeeping from "./pages/Housekeeping";
@@ -43,6 +44,7 @@ const App = () => (
           
           {/* Admin/Management Routes */}
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/admin/rooms" element={<AdminRooms />} />
           <Route path="/rooms" element={<Rooms />} />
           <Route path="/bookings" element={<Bookings />} />
           <Route path="/guests" element={<Guests />} />
