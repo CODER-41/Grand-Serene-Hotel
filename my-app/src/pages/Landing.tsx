@@ -11,15 +11,28 @@ import { ArrowRight, Star, Sparkles, Award, Clock, Users } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import PublicLayout from '@/components/public/PublicLayout';
 import { hotelInfo, services, testimonials } from '@/data/publicData';
+import heroLobby from '@/assets/hero-lobby-2.jpg';
+import serviceDining from '@/assets/service-dining.jpg';
+import serviceSuite from '@/assets/service-suite.jpg';
+import serviceSpa from '@/assets/service-spa.jpg';
+import serviceEvents from '@/assets/service-events.jpg';
 
 const Landing = () => {
   return (
     <PublicLayout>
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Background Gradient */}
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-sage-light/20" />
-        
+        {/* Background Image */}
+        <div className="absolute inset-0">
+          <img
+            src={heroLobby}
+            alt="Grand Serene Hotel Lobby"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-black/60" />
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/30 via-background/70 to-sage-light/40" />
+        </div>
+
         {/* Decorative Elements */}
         <div className="absolute top-20 left-10 w-72 h-72 bg-accent/10 rounded-full blur-3xl" />
         <div className="absolute bottom-20 right-10 w-96 h-96 bg-sage/10 rounded-full blur-3xl" />
@@ -50,7 +63,7 @@ const Landing = () => {
               className="flex items-center justify-center gap-2 mb-6"
             >
               <Sparkles size={16} className="text-accent" />
-              <span className="text-accent font-body text-sm uppercase tracking-[0.3em]">
+              <span className="text-white font-body text-sm uppercase tracking-[0.3em] drop-shadow-lg">
                 Luxury Redefined
               </span>
               <Sparkles size={16} className="text-accent" />
@@ -59,13 +72,22 @@ const Landing = () => {
             {/* Main Headline */}
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="font-display text-5xl md:text-7xl lg:text-8xl font-semibold text-foreground mb-6 leading-tight"
+              animate={{
+                opacity: 1,
+                y: [0, -5, 0, -3, 0],
+                scale: [1, 1.02, 1, 1.01, 1]
+              }}
+              transition={{
+                duration: 0.8,
+                delay: 0.2,
+                y: { duration: 4, repeat: Infinity, ease: "easeInOut" },
+                scale: { duration: 6, repeat: Infinity, ease: "easeInOut" }
+              }}
+              className="font-display text-5xl md:text-7xl lg:text-8xl font-semibold text-white mb-6 leading-tight drop-shadow-2xl"
             >
               Where Luxury
               <br />
-              <span className="text-accent">Meets Tranquility</span>
+              <span className="text-white drop-shadow-lg">Meets Tranquility</span>
             </motion.h1>
 
             {/* Subtitle */}
@@ -73,9 +95,9 @@ const Landing = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 font-body leading-relaxed"
+              className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto mb-10 font-body leading-relaxed drop-shadow-md"
             >
-              Experience unparalleled elegance at The Grand Serene. A sanctuary of 
+              Experience unparalleled elegance at The Grand Serene. A sanctuary of
               refined comfort where every moment is crafted for your pleasure.
             </motion.p>
 
@@ -87,13 +109,13 @@ const Landing = () => {
               className="flex flex-col sm:flex-row gap-4 justify-center"
             >
               <Link to="/bookings">
-                <Button size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground font-body uppercase tracking-wider text-sm px-8 py-6">
+                <Button size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground font-body uppercase tracking-wider text-sm px-8 py-6 shadow-xl">
                   Reserve Your Stay
                   <ArrowRight size={18} className="ml-2" />
                 </Button>
               </Link>
               <Link to="/services">
-                <Button size="lg" variant="outline" className="border-foreground/20 text-foreground hover:bg-foreground/5 font-body uppercase tracking-wider text-sm px-8 py-6">
+                <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 font-body uppercase tracking-wider text-sm px-8 py-6 backdrop-blur-sm shadow-xl">
                   Explore Services
                 </Button>
               </Link>
@@ -104,12 +126,12 @@ const Landing = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.8 }}
-              className="flex flex-wrap items-center justify-center gap-6 mt-16 pt-16 border-t border-border/50"
+              className="flex flex-wrap items-center justify-center gap-6 mt-16 pt-16 border-t border-white/20"
             >
               {hotelInfo.awards.slice(0, 3).map((award, index) => (
-                <div key={index} className="flex items-center gap-2 text-muted-foreground">
+                <div key={index} className="flex items-center gap-2 text-white/80">
                   <Award size={16} className="text-accent" />
-                  <span className="text-xs uppercase tracking-wider">{award}</span>
+                  <span className="text-xs uppercase tracking-wider drop-shadow-sm">{award}</span>
                 </div>
               ))}
             </motion.div>
@@ -248,36 +270,68 @@ const Landing = () => {
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                className="aspect-[3/4] bg-gradient-to-br from-accent/20 to-accent/5 rounded-lg flex items-center justify-center"
+                className="aspect-[3/4] rounded-lg overflow-hidden shadow-lg relative"
               >
-                <span className="text-accent font-display text-lg">Fine Dining</span>
+                <img
+                  src={serviceDining}
+                  alt="Fine Dining"
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                <div className="absolute bottom-4 left-4 right-4">
+                  <span className="text-white font-display text-lg font-semibold drop-shadow-lg">Fine Dining</span>
+                </div>
               </motion.div>
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 }}
-                className="aspect-[3/4] mt-8 bg-gradient-to-br from-sage/20 to-sage/5 rounded-lg flex items-center justify-center"
+                className="aspect-[3/4] mt-8 rounded-lg overflow-hidden shadow-lg relative"
               >
-                <span className="text-sage font-display text-lg">Wellness</span>
+                <img
+                  src={serviceSpa}
+                  alt="Wellness"
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                <div className="absolute bottom-4 left-4 right-4">
+                  <span className="text-white font-display text-lg font-semibold drop-shadow-lg">Wellness</span>
+                </div>
               </motion.div>
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.2 }}
-                className="aspect-[3/4] -mt-8 bg-gradient-to-br from-primary/20 to-primary/5 rounded-lg flex items-center justify-center"
+                className="aspect-[3/4] -mt-8 rounded-lg overflow-hidden shadow-lg relative"
               >
-                <span className="text-primary font-display text-lg">Suites</span>
+                <img
+                  src={serviceSuite}
+                  alt="Suites"
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                <div className="absolute bottom-4 left-4 right-4">
+                  <span className="text-white font-display text-lg font-semibold drop-shadow-lg">Suites</span>
+                </div>
               </motion.div>
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.3 }}
-                className="aspect-[3/4] bg-gradient-to-br from-gold-light/40 to-gold-light/10 rounded-lg flex items-center justify-center"
+                className="aspect-[3/4] rounded-lg overflow-hidden shadow-lg relative"
               >
-                <span className="text-gold-dark font-display text-lg">Events</span>
+                <img
+                  src={serviceEvents}
+                  alt="Events"
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                <div className="absolute bottom-4 left-4 right-4">
+                  <span className="text-white font-display text-lg font-semibold drop-shadow-lg">Events</span>
+                </div>
               </motion.div>
             </div>
           </div>

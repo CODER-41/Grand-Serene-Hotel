@@ -1,14 +1,7 @@
 @import "tailwindcss";
 
-/* Font imports stay the same */
-@import '@fontsource/playfair-display/400.css';
-@import '@fontsource/playfair-display/500.css';
-@import '@fontsource/playfair-display/600.css';
-@import '@fontsource/playfair-display/700.css';
-@import '@fontsource/inter/300.css';
-@import '@fontsource/inter/400.css';
-@import '@fontsource/inter/500.css';
-@import '@fontsource/inter/600.css';
+/* Google Fonts - More reliable font loading */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
 
 @theme {
   /* This section fixes the "unknown utility" error */
